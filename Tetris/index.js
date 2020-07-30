@@ -161,7 +161,15 @@
 //     }
 //   },
 // };
-
+var tetris = null;
 window.addEventListener("load", function () {
-  new Tetris();
+  let maxHeight = document.body.clientHeight;
+  let size = 15;
+  let span=1;
+  let num = Math.floor((maxHeight-span) / (size+span));
+  tetris = new Tetris({
+    blockSize: size,
+    blockNum: num,
+    span: 1,
+  });
 });
