@@ -9,9 +9,10 @@ function Tetris(options) {
             [
                 "#000000",
                 "#FF0000",
+                "#00FF00",
+                "#0000FF",
                 "#FFFF00",
                 "#FFFFFF",
-                "#0000FF",
                 "#00FFFF",
                 "#FF00FF"
             ],
@@ -61,6 +62,11 @@ function Tetris(options) {
         this.opt[k] = options[k];
     }
 
+    if(!this.opt.container){
+        console.log(`container is required`);
+        return;
+    }
+
     this.endTime = 0;      // 动画上次播放结束时间
     this.canves = null;    // 画板
     this.ctx = null;       // 画笔
@@ -72,6 +78,10 @@ function Tetris(options) {
 
 // Tetris状态初始化函数
 Tetris.prototype.init = function () {
+    let parent=document.getElementById(this.opt.container);
+    let maxHeight=parent.clientHeight;
+    this.opt.blockNum=Math.floor((maxHeight - this.opt.span) / (this.opt.blockSize + this.opt.span));  // 计算方格数量
+    
     this.canves = document.createElement("canvas");  // 创建画板
     this.canves.width =
         this.opt.blockSize * this.opt.blockNum +
@@ -79,7 +89,8 @@ Tetris.prototype.init = function () {
     this.canves.height =
         this.opt.blockSize * this.opt.blockNum +     // 设置画板高度
         this.opt.span * (this.opt.blockNum + 1);
-    document.body.appendChild(this.canves);
+    parent.appendChild(this.canves);
+    
     this.ctx = this.canves.getContext("2d");         // 创建画笔
 
     // 初始化网格
