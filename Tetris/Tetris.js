@@ -1,4 +1,16 @@
-// Tetris构造函数
+/**
+ * Tetris构造函数
+ * @author 九门唐大佛爷
+ * @date 2020-08-08
+ * @param {Object} [options] 参数如下
+ * @param {Number} [options.speed] 下落速度
+ * @param {Number} [options.blockSize] 网格单元大小
+ * @param {Number} [options.blockNum] 网格数量
+ * @param {Number} [options.span] 网格边框
+ * @param {Number} [options.colories] 方块色系
+ * @param {Number} [options.boxShapes] 方块类型
+ * @returns {Tetris}
+ */
 function Tetris(options) {
     this.opt = {
         speed: 0.5,    // 方块下落速度
@@ -114,7 +126,7 @@ Tetris.prototype.render = function () {
     // 通过判断两次动画的时间间隔来控制播放速度
     if (curTime - this.endTime > this.opt.speed * 1000) {
         // 更新方块运动位置
-        this.unpdate();
+        this.update();
 
         // 绘制表格
         this.draw();
@@ -146,7 +158,7 @@ Tetris.prototype.draw = function () {
 }
 
 // Tetris状态更新函数（移动方块）
-Tetris.prototype.unpdate = function () {
+Tetris.prototype.update = function () {
     if (this.curBlock) {
         this.clearBeforeBlock();
         // 存在下落的方块，就更新方块位置
@@ -330,7 +342,7 @@ Tetris.prototype.moveLeft = function (n) {
             return;
         }
         // 立刻更新网格
-        this.unpdate();
+        this.update();
         this.draw();
     }
 }
@@ -352,7 +364,7 @@ Tetris.prototype.moveRight = function (n) {
             return;
         }
         // 立刻更新网格
-        this.unpdate();
+        this.update();
         this.draw();
     }
 }
