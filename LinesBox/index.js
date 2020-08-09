@@ -1,5 +1,6 @@
 window.addEventListener("load", function () {
-  new Randomlines({
-    container: "map",
+  new LinesBox({
+    container:'map',
+    step: 10
   });
 });

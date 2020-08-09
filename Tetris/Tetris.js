@@ -88,7 +88,11 @@ function Tetris(options) {
     this.init();           // 初始化
 }
 
-// Tetris状态初始化函数
+/**
+ * Tetris状态初始化函数
+ * @date 2020-08-08
+ * @returns {any}
+ */
 Tetris.prototype.init = function () {
     let parent=document.getElementById(this.opt.container);
     let maxHeight=parent.clientHeight;
@@ -326,7 +330,12 @@ Tetris.prototype.recordFinished = function () {
     }
 }
 
-// Tetris运动方块向左移动n格(默认移动一格)
+/**
+ * Tetris运动方块向左移动
+ * @date 2020-08-08
+ * @param {Number} [n] 移动的格子数量，默认移动一格
+ * @returns {any}
+ */
 Tetris.prototype.moveLeft = function (n) {
     let step = Number(n) || 1;
     if (this.curBlock) {
@@ -347,7 +356,12 @@ Tetris.prototype.moveLeft = function (n) {
     }
 }
 
-// Tetris运动方块向右移动n格(默认移动一格)
+/**
+ * Tetris运动方块向右移动
+ * @date 2020-08-08
+ * @param {Number} [n] 移动的格子数量，默认移动一格
+ * @returns {any}
+ */
 Tetris.prototype.moveRight = function (n) {
     let step = Number(n) || 1;
     if (this.curBlock) {
@@ -369,13 +383,23 @@ Tetris.prototype.moveRight = function (n) {
     }
 }
 
-// Tetris运行方块减速
+/**
+ * Tetris运行方块加速
+ * @date 2020-08-08
+ * @param {Number} [speed] 增加的速度量，默认值0.5
+ * @returns {any}
+ */
 Tetris.prototype.raiseUp = function (speed) {
     this.opt.speed = this.opt.speed - (speed || 0.5);
     this.opt.speed = (this.opt.speed < 0 ? 0 : this.opt.speed);
 }
 
-// Tetris运动方块加速
+/**
+ * Tetris运动方块减速
+ * @date 2020-08-08
+ * @param {Number} [speed] 减少的速度量，默认值0.5
+ * @returns {any}
+ */
 Tetris.prototype.slowDown = function (speed) {
     this.opt.speed = this.opt.speed + (speed || 0.5);
 }
